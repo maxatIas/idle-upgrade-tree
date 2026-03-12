@@ -10,84 +10,104 @@
     <section>
         <div class="main">
             <div class="left">
-                <h3>Gold: <span class="CoinAmount">1000</span></h3>
+                <h3>Gold: <span class="CoinAmount">0</span></h3>
                 <img id="Coin" src="Gold.png" alt="" srcset="" onclick="incrementCoin()" draggable="false">
                 <p>+<span class="clicker-amount">1</span> per click</p>
             </div>
             <div class="right">
-                <div class="upgrade" id="click-upgrade1">
+                <div class="upgrade unavailable" id="click-upgrade1">
                     <div class="left-section">
-                        <button class="upgrade-button" onclick="buyUpgrade1()">buy 1</button>
-                        <button class="upgrade-button" onclick="buy10Upgrade(buyUpgrade1)">buy 10</button>
-                        <button class="upgrade-button" onclick="buyMaxUpgrade(buyUpgrade1)">buy max</button>
+                        <button class="upgrade-button" onclick="buyUpgrade(upgrades[0])">buy 1</button>
+                        <button class="upgrade-button" onclick="buy10Upgrade(upgrades[0])">buy 10</button>
+                        <button class="upgrade-button" onclick="buyMaxUpgrade(upgrades[0])">buy max</button>
                     </div>
+
                     <div class="mid-section">
                         <h4>click upgrade</h4>
                         <div class="cost-info">
-                            <p>cost: <span class="upgrade-cost" id="clicker1-cost">10</span></p>
+                            <p>cost: <span class="upgrade-cost">10</span></p>
                             <img src="Gold.png">
                         </div>
                     </div>
-                    <div class="right-section">level <span class="upgrade-level" id="clicker1-upgrade-level">0</span></div>
+
+                    <div class="right-section">
+                        level <span class="upgrade-level">0</span>
+                    </div>
+
                     <div class="level-info">
-                        <p>+<span class="level-increase" id="clicker1-level-increase">0</span> per click</p>
+                        <p>+<span class="level-increase">1</span> per click</p>
                     </div>
                 </div>
 
-                <div class="upgrade" id="click-upgrade2">
+                <div class="upgrade unavailable" id="click-upgrade2">
                     <div class="left-section">
-                        <button class="upgrade-button" onclick="buyUpgrade2()">buy 1</button>
-                        <button class="upgrade-button" onclick="buy10Upgrade(buyUpgrade2)">buy 10</button>
-                        <button class="upgrade-button" onclick="buyMaxUpgrade(buyUpgrade2)">buy max</button>
+                        <button class="upgrade-button" onclick="buyUpgrade(upgrades[1])">buy 1</button>
+                        <button class="upgrade-button" onclick="buy10Upgrade(upgrades[1])">buy 10</button>
+                        <button class="upgrade-button" onclick="buyMaxUpgrade(upgrades[1])">buy max</button>
                     </div>
+
                     <div class="mid-section">
                         <h4>click upgrade</h4>
                         <div class="cost-info">
-                            <p>cost: <span class="upgrade-cost" id="clicker2-cost">100</span></p>
+                            <p>cost: <span class="upgrade-cost">100</span></p>
                             <img src="Gold.png">
                         </div>
                     </div>
-                    <div class="right-section">level <span class="upgrade-level" id="clicker2-upgrade-level">0</span></div>
+
+                    <div class="right-section">
+                        level <span class="upgrade-level">0</span>
+                    </div>
+
                     <div class="level-info">
-                        <p>+<span class="level-increase" id="clicker2-level-increase">0</span> per click</p>
+                        <p>+<span class="level-increase">10</span> per click</p>
                     </div>
                 </div>
                 
-                <div class="upgrade" id="click-upgrade3">
+                <div class="upgrade unavailable" id="click-upgrade3">
                     <div class="left-section">
-                        <button class="upgrade-button" onclick="buyUpgrade3()">buy 1</button>
-                        <button class="upgrade-button" onclick="buy10Upgrade(buyUpgrade3)">buy 10</button>
-                        <button class="upgrade-button" onclick="buyMaxUpgrade(buyUpgrade3)">buy max</button>
+                        <button class="upgrade-button" onclick="buyUpgrade(upgrades[2])">buy 1</button>
+                        <button class="upgrade-button" onclick="buy10Upgrade(upgrades[2])">buy 10</button>
+                        <button class="upgrade-button" onclick="buyMaxUpgrade(upgrades[2])">buy max</button>
                     </div>
+
                     <div class="mid-section">
                         <h4>click upgrade</h4>
                         <div class="cost-info">
-                            <p>cost: <span class="upgrade-cost" id="clicker3-cost">1000</span></p>
+                            <p>cost: <span class="upgrade-cost">1000</span></p>
                             <img src="Gold.png">
                         </div>
                     </div>
-                    <div class="right-section">level <span class="upgrade-level" id="clicker3-upgrade-level">0</span></div>
+
+                    <div class="right-section">
+                        level <span class="upgrade-level">0</span>
+                    </div>
+
                     <div class="level-info">
-                        <p>+<span class="level-increase" id="clicker3-level-increase">0</span> per click</p>
-                    </div>
-                </div>
-                <div class="upgrade" id="multiplier-upgrade1">
-                    <div class="left-section">
-                        <button class="upgrade-button" id="multiplier1-button" onclick="buyMultiplier1()">buy</button>
-                    </div>
-                    <div class="mid-section">
-                        <h4>multiplier upgrade</h4>
-                        <div class="cost-info">
-                            <p>cost: <span class="upgrade-cost" id="multiplier1-cost">100</span></p>
-                            <img src="Gold.png">
-                        </div>
-                    </div>
-                    <div class="right-section"><span class="owned-statement" id="multiplier1-owned-statement">not owned</span></div>
-                    <div class="level-info">
-                        <p>x<span class="multiplier" id="multiplier1">1.5</span> coin multiplier</p>
+                        <p>+<span class="level-increase">100</span> per click</p>
                     </div>
                 </div>
 
+                <div class="upgrade unavailable" id="multiplier-upgrade1">
+                    <div class="left-section">
+                        <button class="upgrade-button" onclick="buyUpgrade(upgrades[3])">buy</button>
+                    </div>
+
+                    <div class="mid-section">
+                        <h4>multiplier upgrade</h4>
+                        <div class="cost-info">
+                            <p>cost: <span class="upgrade-cost">100</span></p>
+                            <img src="Gold.png">
+                        </div>
+                    </div>
+
+                    <div class="right-section">
+                        <span class="status">not owned</span>
+                    </div>
+
+                    <div class="level-info">
+                        <p>Gold income ×<span class="level-increase">1.5</span></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

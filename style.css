@@ -57,7 +57,6 @@ body{
     width: 60px
 }
 .upgrade-button{
-    background-color: rgb(255, 103, 103);
     width: 80px;
     height: 23px;
     border-radius: 9px;
@@ -84,3 +83,19 @@ body{
 .upgrade:hover .level-info{
     visibility: visible;
 }
+
+.upgrade.available .upgrade-button{ 
+    background-color: rgb(187, 255, 103); 
+}
+
+.upgrade.unavailable .upgrade-button{
+    background-color: rgb(255, 103, 103);
+}
+
+.upgrade.owned{
+    background-color: rgb(125, 168, 107);
+}
+.upgrade.owned .upgrade-button{
+    background-color: rgb(173, 173, 173);
+    pointer-events: none;
+ }
