@@ -1,3 +1,6 @@
+//let replaceme = document.querySelector("#replaceme")
+//let parsedreplaceme = parseFloat(replaceme.innerHTML)
+
 let coin = document.querySelector(".CoinAmount")
 let parsedCoin = parseFloat(coin.innerHTML)
 
@@ -31,15 +34,28 @@ let parsedClicker3UpgradeLevel = parseFloat(clicker3upgradeLevel.innerHTML)
 let clicker3levelIncrease = document.querySelector("#clicker3-level-increase")
 let parsedClicker3LevelIncrease = parseFloat(clicker3levelIncrease.innerHTML)
 
+let multiplier1 = document.querySelector("#multiplier1")
+let parsedMultiplier1 = parseFloat(multiplier1.innerHTML)
+
+let multiplier1cost = document.querySelector("#multiplier1-cost")
+let parsedmultiplier1cost = parseFloat(multiplier1cost.innerHTML)
+
+let multiplier1Owned = document.querySelector("#multiplier1-owned-statement")
+
+
+let mult1 = false
+
+let gpc = parsedClickerAmount
+let mult = 1
 
 function incrementCoin(){
-    parsedCoin += parsedClickerAmount
-    coin.innerHTML = parsedCoin
+    parsedCoin += parsedClickerAmount * mult
+    coin.innerHTML = Math.round(parsedCoin)
 }
 function buyUpgrade1(){
     if (parsedCoin >= parsedClicker1Cost){
 
-        parsedCoin -= clicker1Cost.innerHTML
+        parsedCoin -= parsedClicker1Cost
         coin.innerHTML = parsedCoin
 
         parsedClickerAmount += 1
@@ -53,13 +69,15 @@ function buyUpgrade1(){
 
         parsedClicker1UpgradeLevel += 1
         clicker1upgradeLevel.innerHTML = parsedClicker1UpgradeLevel
+        
+        return true
     }
 }
 
 function buyUpgrade2(){
     if (parsedCoin >= parsedClicker2Cost){
 
-        parsedCoin -= clicker2Cost.innerHTML
+        parsedCoin -= parsedClicker2Cost
         coin.innerHTML = parsedCoin
 
         parsedClickerAmount += 10
@@ -73,13 +91,15 @@ function buyUpgrade2(){
 
         parsedClicker2UpgradeLevel += 1
         clicker2upgradeLevel.innerHTML = parsedClicker2UpgradeLevel
+        
+        return true
     }
 }
 
 function buyUpgrade3(){
     if (parsedCoin >= parsedClicker3Cost){
 
-        parsedCoin -= clicker3Cost.innerHTML
+        parsedCoin -= parsedClicker3Cost
         coin.innerHTML = parsedCoin
 
         parsedClickerAmount += 100
@@ -93,5 +113,31 @@ function buyUpgrade3(){
 
         parsedClicker3UpgradeLevel += 1
         clicker3upgradeLevel.innerHTML = parsedClicker3UpgradeLevel
+
+        return true
+    }
+}
+
+function buy10Upgrade(upgrade){
+    for (let i = 0; i < 10; i++){
+        upgrade()
+    }
+}
+
+function buyMaxUpgrade(upgrade){
+    while (upgrade() === true){
+        upgrade()
+    }
+}
+
+function buyMultiplier1(){
+    if (parsedCoin >= parsedmultiplier1cost && mult1 == false){
+        parsedCoin -= parsedmultiplier1cost
+        coin.innerHTML = parsedCoin
+        mult *= parsedMultiplier1
+        mult1 = true
+        multiplier1Owned.innerHTML = "owned"
+        document.getElementById("multiplier-upgrade1").style.backgroundColor = rgb(187, 255, 103);
+        document.getElementById("multiplier1-button").style.backgroundColor = rgb(200, 200, 200);
     }
 }
