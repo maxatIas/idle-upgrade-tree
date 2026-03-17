@@ -17,16 +17,35 @@ body{
     text-align: center;
 }
 
-.right{
+.select-menu{
     max-height: 400px;
+    width: 460px;
+    border: thick solid white;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 4px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom: none;
+    display: flex;
+}
+.menu-types{
+    width: 33%;
+    text-align: center;
+    pointer-events: auto;
+    cursor: pointer;
+}
+.upgrade-container{
+    height: 400px;
     width: 460px;
     overflow-y: auto;
     overflow-x: hidden;
     border: thick solid white;
     background-color: rgba(255, 255, 255, 0.3);
     padding: 4px;
-    border-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
+
 
 button:hover{
     opacity: 0.9;

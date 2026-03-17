@@ -242,6 +242,19 @@ function load() {
     gps.innerHTML = parsedgps;
 }
 
+function filterUpgrades(category) {
+    for (const upg of upgrades) {
+        if (upg.type === category) {
+            upg.el.style.display = "flex";
+        } else {
+            upg.el.style.display = "none";
+        }
+    }
+}
 
+document.querySelector(".click-select").addEventListener("click", () => filterUpgrades("click"));
+document.querySelector(".passive-select").addEventListener("click", () => filterUpgrades("passive"));
+document.querySelector(".mult-select").addEventListener("click", () => filterUpgrades("mult"));
 
+filterUpgrades("click")
 checkAvailable();
