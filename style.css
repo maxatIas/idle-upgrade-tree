@@ -106,19 +106,23 @@ button:hover{
     display: flex;
 }
 
-.level-info{
+.level-info {
     position: absolute;
-    right: -104px;
-    background-color: rgba(255, 255, 255, 0.5);
-    height: 80px;
+    right: -105px;
+    top: 0;
+    height: 100%;
     width: 100px;
+    background-color: rgba(255, 255, 255, 0.5);
     text-align: center;
-    visibility: hidden;
+    pointer-events: none; /* IMPORTANT */
+    opacity: 0;
+    transition: opacity 0.15s;
 }
 
-.upgrade:hover .level-info{
-    visibility: visible;
+.upgrade:hover .level-info {
+    opacity: 1;
 }
+
 
 .upgrade-button.available {
     background-color: rgb(187, 255, 103);
