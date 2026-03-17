@@ -19,20 +19,26 @@ body{
 
 .select-menu{
     max-height: 400px;
-    width: 460px;
+    width: 468px;
     border: thick solid white;
     background-color: rgba(255, 255, 255, 0.3);
-    padding: 4px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     border-bottom: none;
     display: flex;
 }
 .menu-types{
-    width: 33%;
+    width: 25%;
+    padding: 4px;
     text-align: center;
     pointer-events: auto;
     cursor: pointer;
+}
+.menu-types:hover{
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.menu-types:active{
+    background-color: rgba(255, 255, 255, 0.2);
 }
 .upgrade-container{
     height: 400px;
@@ -143,11 +149,12 @@ button:hover{
 .stats{
     position: absolute;
     bottom: 0;
-    width: 450px;
+    width: 40%;
     padding: 30px;
     border: 2px white solid;
     background-color: hsl(0, 0%, 17%);
     border-radius: 6px;
+    place-self: center;
 }
 
 .GoldSTR{

@@ -38,10 +38,10 @@ const upgrades = [
     { id: "p7", name: "Passive Income VII", baseIncrease: 1000000, cost: 15000000, scaling: 1.3 },
 
     { id: "m1", name: "Gold Multiplier I", multiplier: 1.5, cost: 1000 },
-    { id: "m2", name: "Gold Multiplier II", multiplier: 2, cost: 5000 },
-    { id: "m3", name: "Gold Multiplier III", multiplier: 5, cost: 20000 },
-    { id: "m4", name: "Gold Multiplier IV", multiplier: 10, cost: 400000 },
-    { id: "m5", name: "Gold Multiplier V", multiplier: 25, cost: 1000000 },
+    { id: "m2", name: "Gold Multiplier II", multiplier: 2, cost: 500000 },
+    { id: "m3", name: "Gold Multiplier III", multiplier: 5, cost: 10000000 },
+    { id: "m4", name: "Gold Multiplier IV", multiplier: 10, cost: 500000000 },
+    { id: "m5", name: "Gold Multiplier V", multiplier: 25, cost: 10000000000 },
 
     { id: "s1", name: "Synergy Tier 1", effectPerUpgrade: 0.02, cost: 1000 },
     { id: "s2", name: "Synergy Tier 2", effectPerUpgrade: 0.02, cost: 10000 },
