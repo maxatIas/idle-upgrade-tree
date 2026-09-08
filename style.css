@@ -1,20 +1,130 @@
 body{
-    display: grid;
-    place-items: center;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     background-color: hsl(0, 0%, 17%);
     color: white;
+    align-items: center;
 }
 
-.main{
+/* Header */
+.header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     display: flex;
-    gap: 300px;
+    align-items: center;
+    gap: 20px;
 }
 
-.left h3{
+.gem-display {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.gem-amount {
+    font-weight: 700;
+    color: #00ffff;
+    font-size: 18px;
+}
+
+/* Middle - 30:70 split */
+.middle {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    flex: 1;
+    margin-top: 50px;
+}
+
+.sidebar {
+    width: 30%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-content {
+    width: 70%;
+    position: relative;
+}
+
+.page-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.tab-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.tab-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.tab-button.active {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: white;
+}
+
+.page-container {
+    position: relative;
+    min-height: 600px;
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Upgrade page layout */
+.upgrade-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.coin-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.coin-section h3 {
     text-align: center;
+}
+
+.coin-section .coin-img-container {
+    display: flex;
+    justify-content: center;
+}
+
+.upgrades-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
 }
 
 .select-menu{
@@ -146,15 +256,131 @@ button:hover{
     pointer-events: none;
  }
 
-.stats{
+/* Summon Page */
+.summon-page {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    height: 100%;
+    min-height: 400px;
+}
+
+.summon-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.summon-button {
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: rgb(50, 100, 200);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 250px;
+}
+
+.inventory-section {
+    width: 100%;
+}
+
+.inventory-section h4 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.inventory-item {
+    aspect-ratio: 1;
+    min-width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.inventory-item.common {
+    border: 2px solid #808080;
+}
+
+.inventory-item.uncommon {
+    border: 2px solid #00ff00;
+}
+
+.inventory-item.rare {
+    border: 2px solid #0000ff;
+}
+
+.inventory-item .item-name {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    word-break: break-word;
+}
+
+.inventory-item .item-count {
     position: absolute;
-    bottom: 0;
-    width: 40%;
-    padding: 30px;
+    bottom: 2px;
+    right: 4px;
+    font-size: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.summon-button {
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: rgb(50, 100, 200);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 200px;
+}
+
+.summon-button:hover {
+    opacity: 0.9;
+    background-color: rgb(60, 120, 220);
+}
+
+.summon-button:active {
+    transform: scale(0.98);
+}
+
+/* Footer */
+.footer {
+    width: 90%;
+    max-width: 1200px;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.stats {
+    padding: 15px 25px;
     border: 2px white solid;
     background-color: hsl(0, 0%, 17%);
     border-radius: 6px;
-    place-self: center;
+    text-align: center;
 }
 
 .GoldSTR{
@@ -173,11 +399,9 @@ button:hover{
 }
 
 .utils{
-    position: absolute;
     display: flex;
-    top: 15px;
-    right: 15px;
     gap: 10px;
+    margin-top: 10px;
 }
 
 .util-button{
@@ -186,6 +410,63 @@ button:hover{
     font-weight: 600;
     font-family: inherit;
     border-radius: 6px;
+}
+
+.dev-button {
+    background-color: rgb(200, 100, 200);
+    color: white;
+}
+
+.prestige-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.prestige-button {
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 8px;
+    background-color: rgb(100, 50, 200);
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.prestige-button:hover {
+    opacity: 0.9;
+    background-color: rgb(120, 60, 220);
+}
+
+.prestige-button:disabled {
+    background-color: rgb(60, 30, 120);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.prestige-button.available {
+    background-color: rgb(150, 80, 250);
+}
+
+.prestige-description {
+    text-align: center;
+    font-size: 14px;
+    color: rgb(220, 220, 255);
+    max-width: 250px;
+}
+
+.prestige-info {
+    margin: 5px 0;
+    font-size: 16px;
+    color: rgb(200, 180, 255);
+}
+
+.current-prestige {
+    font-weight: 700;
+    color: rgb(180, 100, 255);
 }
 
 
