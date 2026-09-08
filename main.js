@@ -34,33 +34,163 @@ const summonCosts = {
     ten: 10
 };
 
-const itemRarity = [
-    { id: "common", name: "Common", probability: 0.60, color: "#808080" },
-    { id: "uncommon", name: "Uncommon", probability: 0.30, color: "#00ff00" },
-    { id: "rare", name: "Rare", probability: 0.10, color: "#0000ff" }
+const itemTypes = [
+    { id: "tool", name: "Tool", probability: 0.2475 },
+    { id: "head", name: "Head", probability: 0.2475 },
+    { id: "torso", name: "Torso", probability: 0.2475 },
+    { id: "boots", name: "Boots", probability: 0.2475 },
+    { id: "relic", name: "Relic", probability: 0.01 }
 ];
+
+const itemRarity = [
+    { id: "common", name: "Common", probability: 0.60, color: "#808080", coinBonus: 1.0, gemBonus: 0 },
+    { id: "uncommon", name: "Uncommon", probability: 0.2499, color: "#00ff00", coinBonus: 1.1, gemBonus: 0 },
+    { id: "rare", name: "Rare", probability: 0.09, color: "#0000ff", coinBonus: 1.2, gemBonus: 0.01 },
+    { id: "epic", name: "Epic", probability: 0.05, color: "#cc00ff", coinBonus: 1.3, gemBonus: 0.02 },
+    { id: "legendary", name: "Legendary", probability: 0.01, color: "#ffd700", coinBonus: 1.5, gemBonus: 0.05 },
+    { id: "mythical", name: "Mythical", probability: 0.001, color: "#ff0000", coinBonus: 2.0, gemBonus: 0.10 },
+    { id: "divine", name: "Divine", probability: 0.0001, color: "#000000", coinBonus: 3.0, gemBonus: 0.20 }
+];
+
+// Equipment: one per type
+let equipment = {
+    tool: null,
+    head: null,
+    torso: null,
+    boots: null,
+    relic: null
+};
 
 // Update gem display
 function updateGemDisplay() {
     gemAmountEl.textContent = formatNumber(gems);
 }
 
+// Get active equipment bonuses
+function getEquipmentBonuses() {
+    let coinBonus = 1.0;
+    let gemBonus = 0;
+    
+    for (const type in equipment) {
+        const itemId = equipment[type];
+        if (itemId) {
+            const parts = itemId.split('-');
+            const rarityId = parts[0];
+            const rarity = itemRarity.find(r => r.id === rarityId);
+            if (rarity) {
+                coinBonus *= rarity.coinBonus;
+                gemBonus += rarity.gemBonus;
+            }
+        }
+    }
+    
+    return { coinBonus, gemBonus };
+}
+
 // Update inventory display
 function updateInventoryDisplay() {
     inventoryGrid.innerHTML = '';
     
-    for (const item of itemRarity) {
-        const count = inventory[item.id] || 0;
-        if (count > 0) {
+    // Sort items by rarity (rarest first) - divine, mythical, legendary, epic, rare, uncommon, common
+    const rarityOrder = ['divine', 'mythical', 'legendary', 'epic', 'rare', 'uncommon', 'common'];
+    
+    const sortedItems = Object.keys(inventory)
+        .filter(itemId => inventory[itemId] > 0)
+        .sort((a, b) => {
+            const aRarity = a.split('-')[0];
+            const bRarity = b.split('-')[0];
+            return rarityOrder.indexOf(aRarity) - rarityOrder.indexOf(bRarity);
+        });
+    
+    for (const itemId of sortedItems) {
+        const count = inventory[itemId];
+        const parts = itemId.split('-');
+        const rarityId = parts[0];
+        const typeId = parts[1];
+        const rarity = itemRarity.find(r => r.id === rarityId);
+        const type = itemTypes.find(t => t.id === typeId);
+        
+        if (rarity && type) {
             const itemEl = document.createElement('div');
-            itemEl.className = `inventory-item ${item.id}`;
+            const isEquipped = equipment[typeId] === itemId;
+            const coinBonusPercent = Math.round((rarity.coinBonus - 1) * 100);
+            const gemBonusPercent = Math.round(rarity.gemBonus * 100);
+            const statsText = gemBonusPercent > 0 
+                ? `+${coinBonusPercent}% coins, +${gemBonusPercent}% gems`
+                : `+${coinBonusPercent}% coins`;
+            
+            itemEl.className = `inventory-item ${rarityId}`;
             itemEl.innerHTML = `
-                <span class="item-name">${item.name}</span>
+                <span class="item-name">${rarity.name}</span>
+                ${isEquipped ? '<span class="item-equipped">✓</span>' : ''}
+                <span class="item-type">${type.name}</span>
+                <span class="item-stats">${statsText}</span>
                 <span class="item-count">${formatNumber(count)}</span>
             `;
+            
+            itemEl.onclick = () => toggleEquip(itemId, typeId);
             inventoryGrid.appendChild(itemEl);
         }
     }
+}
+
+// Initialize equipment slots
+function initEquipmentSlots() {
+    const slotsContainer = document.getElementById('equipment-slots');
+    slotsContainer.innerHTML = '';
+    
+    for (const type of itemTypes) {
+        const slotEl = document.createElement('div');
+        slotEl.className = 'equipment-slot';
+        slotEl.innerHTML = `<span class="slot-label">${type.name}</span>`;
+        slotsContainer.appendChild(slotEl);
+    }
+    
+    updateEquipmentSlots();
+}
+
+// Update equipment slots display
+function updateEquipmentSlots() {
+    const slots = document.querySelectorAll('.equipment-slot');
+    const types = Object.keys(equipment);
+    
+    for (let i = 0; i < Math.min(slots.length, types.length); i++) {
+        const slot = slots[i];
+        const typeId = types[i];
+        const itemId = equipment[typeId];
+        
+        if (itemId) {
+            const parts = itemId.split('-');
+            const rarityId = parts[0];
+            const rarity = itemRarity.find(r => r.id === rarityId);
+            const type = itemTypes.find(t => t.id === typeId);
+            
+            if (rarity && type) {
+                slot.innerHTML = `
+                    <span class="item-name" style="font-size: 10px; color: ${rarity.color};">${rarity.name} ${type.name}</span>
+                `;
+                slot.style.borderColor = rarity.color;
+                slot.style.borderStyle = 'solid';
+            }
+        } else {
+            slot.innerHTML = `<span class="slot-label">${itemTypes.find(t => t.id === typeId)?.name || typeId}</span>`;
+            slot.style.borderColor = '';
+            slot.style.borderStyle = 'dashed';
+        }
+    }
+}
+
+// Toggle equip/unequip
+function toggleEquip(itemId, typeId) {
+    if (equipment[typeId] === itemId) {
+        // Unequip
+        equipment[typeId] = null;
+    } else {
+        // Equip
+        equipment[typeId] = itemId;
+    }
+    updateEquipmentSlots();
+    updateInventoryDisplay();
 }
 
 // =========================
@@ -135,7 +265,7 @@ function prestige() {
     currentPrestige = next.id;
     prestigeBonus *= next.incomeBonus;
 
-    // Reset game state (but NOT gems or inventory)
+    // Reset game state (but NOT gems, inventory, or equipment)
     parsedCoin = 0;
     mult = 1;
     synergyTier = {};
@@ -171,8 +301,10 @@ function prestige() {
 function addDevCurrency() {
     parsedCoin += 1e25; // Add a large amount of gold
     gems += 1000;     // Add plenty of gems
+    
     coin.textContent = formatNumber(parsedCoin);
     updateGemDisplay();
+    updateInventoryDisplay();
     updateStats();
     checkAvailable();
     updatePrestigeUI();
@@ -393,7 +525,8 @@ function formatNumber(num) {
 
 function updateStats() {
     const synergy = getSynergyMultiplier();
-    const totalMultiplier = mult * synergy * prestigeBonus;
+    const equipmentBonuses = getEquipmentBonuses();
+    const totalMultiplier = mult * synergy * prestigeBonus * equipmentBonuses.coinBonus;
     clickerAmount.textContent = formatNumber(parsedClickerAmount * totalMultiplier);
     gps.textContent = formatNumber(parsedgps * totalMultiplier);
 }
@@ -405,13 +538,17 @@ function updateStats() {
 
 function incrementCoin(event) {
     const synergy = getSynergyMultiplier();
-    const totalMultiplier = mult * synergy * prestigeBonus;
+    const equipmentBonuses = getEquipmentBonuses();
+    const totalMultiplier = mult * synergy * prestigeBonus * equipmentBonuses.coinBonus;
     const gpc = parsedClickerAmount * totalMultiplier;
     parsedCoin += gpc;
     coin.textContent = formatNumber(Math.round(parsedCoin));
 
-    // 0.5% chance to get a gem
-    if (Math.random() < 0.005) {
+    // Gem drop chance with equipment bonus
+    const baseGemChance = 0.005;
+    const totalGemChance = baseGemChance + equipmentBonuses.gemBonus;
+    
+    if (Math.random() < totalGemChance) {
         gems += 1;
         updateGemDisplay();
         // Show gem +1 animation
@@ -461,6 +598,7 @@ function save() {
         mult: mult,
         gems: gems,
         inventory: inventory,
+        equipment: equipment,
         currentPrestige: currentPrestige,
         prestigeBonus: prestigeBonus,
         upgrades: upgrades.map(upg => ({
@@ -483,7 +621,8 @@ function load() {
     parsedCoin = data.coin;
     mult = data.mult;
     gems = data.gems || 0;
-    inventory = data.inventory || { common: 0, uncommon: 0, rare: 0 };
+    inventory = data.inventory || {};
+    equipment = data.equipment || { tool: null, head: null, torso: null, boots: null, relic: null };
     currentPrestige = data.currentPrestige || 0;
     prestigeBonus = data.prestigeBonus || 1;
     coin.textContent = formatNumber(parsedCoin);
@@ -515,6 +654,7 @@ function load() {
         }
     }
 
+    initEquipmentSlots();
     updateInventoryDisplay();
     updateStats();
     checkAvailable();
@@ -644,7 +784,8 @@ function buyMaxUpgrade(upg) {
 
 setInterval(() => {
     const synergy = getSynergyMultiplier()
-    const totalMultiplier = mult * synergy * prestigeBonus;
+    const equipmentBonuses = getEquipmentBonuses();
+    const totalMultiplier = mult * synergy * prestigeBonus * equipmentBonuses.coinBonus;
     parsedCoin += parsedgps * totalMultiplier / 100;
     coin.textContent = formatNumber(Math.round(parsedCoin));
     updateStats();
@@ -675,6 +816,7 @@ coinContainer.addEventListener("click", incrementCoin);
 updateStats();
 updatePrestigeUI();
 updateGemDisplay();
+initEquipmentSlots();
 updateInventoryDisplay();
 
 // =========================
@@ -715,17 +857,36 @@ document.querySelectorAll(".tab-button").forEach(btn => {
 // SUMMON FUNCTIONS
 // =========================
 
-function getRandomItem() {
+function getRandomRarity() {
     const rand = Math.random();
     let cumulative = 0;
     
-    for (const item of itemRarity) {
-        cumulative += item.probability;
+    for (const rarity of itemRarity) {
+        cumulative += rarity.probability;
         if (rand < cumulative) {
-            return item.id;
+            return rarity.id;
         }
     }
     return "common"; // fallback
+}
+
+function getRandomType() {
+    const rand = Math.random();
+    let cumulative = 0;
+    
+    for (const type of itemTypes) {
+        cumulative += type.probability;
+        if (rand < cumulative) {
+            return type.id;
+        }
+    }
+    return "tool"; // fallback
+}
+
+function generateRandomItem() {
+    const rarityId = getRandomRarity();
+    const typeId = getRandomType();
+    return `${rarityId}-${typeId}`;
 }
 
 function addItemToInventory(itemId) {
@@ -739,10 +900,8 @@ function summonOnce() {
     gems -= summonCosts.single;
     updateGemDisplay();
     
-    const item = getRandomItem();
+    const item = generateRandomItem();
     addItemToInventory(item);
-    
-    // Bonus for single summon: nothing special
 }
 
 function summon10() {
@@ -753,7 +912,7 @@ function summon10() {
     
     // 10 summons for 10 gems, get 11 items (bonus)
     for (let i = 0; i < 11; i++) {
-        const item = getRandomItem();
+        const item = generateRandomItem();
         addItemToInventory(item);
     }
 }

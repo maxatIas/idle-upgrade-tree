@@ -14,7 +14,7 @@
         <div class="utils">
             <button class="util-button" onclick="save()">Save</button>
             <button class="util-button" onclick="load()">Load</button>
-            <button class="util-button dev-button" onclick="addDevCurrency()">+Dev Currency</button>
+            <button class="util-button dev-button" onclick="addDevCurrency()">+Dev Gold</button>
         </div>
     </div>
     <div class="middle">
@@ -103,12 +103,27 @@
                     </div>
                 </div>
                 <div class="page summon-page" style="display: none;">
-                    <div class="summon-content">
-                        <button class="summon-button" onclick="summonOnce()">Summon Once (1 gem)</button>
-                        <button class="summon-button" onclick="summon10()">Summon x10 (10 gems)</button>
+                    <div class="summon-area">
+                        <div class="summon-content">
+                            <button class="summon-button" onclick="summonOnce()">Summon Once (1 gem)</button>
+                            <button class="summon-button" onclick="summon10()">Summon x10 (10 gems)</button>
+                        </div>
+                        <div class="drop-rates">
+                            <h5>Drop Rates:</h5>
+                            <p>Common: 60%</p>
+                            <p>Uncommon: 24.99%</p>
+                            <p>Rare: 9%</p>
+                            <p>Epic: 5%</p>
+                            <p>Legendary: 1%</p>
+                            <p>Mythical: 0.1%</p>
+                            <p>Divine: 0.01%</p>
+                        </div>
                     </div>
                     <div class="inventory-section">
                         <h4>Inventory</h4>
+                        <div class="equipment-slots" id="equipment-slots">
+                            <!-- Equipment slots will be added here -->
+                        </div>
                         <div class="inventory-grid" id="inventory-grid">
                             <!-- Items will be added here by JS -->
                         </div>
