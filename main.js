@@ -24,36 +24,36 @@ const upgrades = [
     // CLICK UPGRADES
     { id: "c1",  name: "Click Upgrade I",   baseIncrease: 1,        cost: 10,          scaling: 1.3 },
     { id: "c2",  name: "Click Upgrade II",  baseIncrease: 10,       cost: 1e2,        scaling: 1.3 },
-    { id: "c3",  name: "Click Upgrade III", baseIncrease: 100,      cost: 5e2,      scaling: 1.3 },
-    { id: "c4",  name: "Click Upgrade IV",  baseIncrease: 1000,     cost: 1.5e3,      scaling: 1.3 },
-    { id: "c5",  name: "Click Upgrade V",   baseIncrease: 10000,    cost: 1e4,        scaling: 1.3 },
-    { id: "c6",  name: "Click Upgrade VI",  baseIncrease: 100000,   cost: 7.5e4,      scaling: 1.3 },
-    { id: "c7",  name: "Click Upgrade VII", baseIncrease: 1e6,      cost: 5e5,        scaling: 1.3 },
-    { id: "c8",  name: "Click Upgrade VIII",  baseIncrease: 1e7,   cost: 5e12,    scaling: 1.3 },
-    { id: "c9",  name: "Click Upgrade IX",   baseIncrease: 1e8,   cost: 2.5e13,  scaling: 1.3 },
-    { id: "c10", name: "Click Upgrade X",    baseIncrease: 1e9,   cost: 1.25e14, scaling: 1.3 },
-    { id: "c11", name: "Click Upgrade XI",   baseIncrease: 1e10,  cost: 6.25e14, scaling: 1.3 },
-    { id: "c12", name: "Click Upgrade XII",  baseIncrease: 1e11,  cost: 3.12e15, scaling: 1.3 },
-    { id: "c13", name: "Click Upgrade XIII", baseIncrease: 1e12,  cost: 1.56e16, scaling: 1.3 },
-    { id: "c14", name: "Click Upgrade XIV",  baseIncrease: 1e13,  cost: 7.8e16,  scaling: 1.3 },
-    { id: "c15", name: "Click Upgrade XV",   baseIncrease: 1e14,  cost: 3.9e17,  scaling: 1.3 },
+    { id: "c3",  name: "Click Upgrade III", baseIncrease: 100,      cost: 1e3,      scaling: 1.3 },
+    { id: "c4",  name: "Click Upgrade IV",  baseIncrease: 1000,     cost: 1e4,      scaling: 1.3 },
+    { id: "c5",  name: "Click Upgrade V",   baseIncrease: 10000,    cost: 1e7,        scaling: 1.3 },
+    { id: "c6",  name: "Click Upgrade VI",  baseIncrease: 100000,   cost: 1e8,      scaling: 1.3 },
+    { id: "c7",  name: "Click Upgrade VII", baseIncrease: 1e6,      cost: 1e9,        scaling: 1.3 },
+    { id: "c8",  name: "Click Upgrade VIII",  baseIncrease: 1e7,   cost: 1e10,    scaling: 1.3 },
+    { id: "c9",  name: "Click Upgrade IX",   baseIncrease: 1e8,   cost: 1e11,  scaling: 1.3 },
+    { id: "c10", name: "Click Upgrade X",    baseIncrease: 1e9,   cost: 1e15, scaling: 1.3 },
+    { id: "c11", name: "Click Upgrade XI",   baseIncrease: 1e10,  cost: 1e16, scaling: 1.3 },
+    { id: "c12", name: "Click Upgrade XII",  baseIncrease: 1e11,  cost: 1e17, scaling: 1.3 },
+    { id: "c13", name: "Click Upgrade XIII", baseIncrease: 1e12,  cost: 1e18, scaling: 1.3 },
+    { id: "c14", name: "Click Upgrade XIV",  baseIncrease: 1e13,  cost: 1e19,  scaling: 1.3 },
+    { id: "c15", name: "Click Upgrade XV",   baseIncrease: 1e14,  cost: 1e21,  scaling: 1.3 },
 
     // PASSIVE UPGRADES
-    { id: "p1",  name: "Passive Income I",   baseIncrease: 1,        cost: 8,          scaling: 1.3 },
-    { id: "p2",  name: "Passive Income II",  baseIncrease: 10,       cost: 8e1,        scaling: 1.3 },
-    { id: "p3",  name: "Passive Income III", baseIncrease: 100,      cost: 4e2,        scaling: 1.3 },
-    { id: "p4",  name: "Passive Income IV",  baseIncrease: 1000,     cost: 2.5e3,      scaling: 1.3 },
-    { id: "p5",  name: "Passive Income V",   baseIncrease: 10000,    cost: 1.5e4,      scaling: 1.3 },
-    { id: "p6",  name: "Passive Income VI",  baseIncrease: 100000,   cost: 1e5,        scaling: 1.3 },
-    { id: "p7",  name: "Passive Income VII", baseIncrease: 1e6,      cost: 7.5e5,      scaling: 1.3 },
-    { id: "p8",  name: "Passive Income VIII",  baseIncrease: 1e7,   cost: 7.5e12,   scaling: 1.3 },
-    { id: "p9",  name: "Passive Income IX",   baseIncrease: 1e8,   cost: 3.75e13,  scaling: 1.3 },
-    { id: "p10", name: "Passive Income X",    baseIncrease: 1e9,   cost: 1.87e14,  scaling: 1.3 },
-    { id: "p11", name: "Passive Income XI",   baseIncrease: 1e10,  cost: 9.37e14,  scaling: 1.3 },
-    { id: "p12", name: "Passive Income XII",  baseIncrease: 1e11,  cost: 4.68e15,  scaling: 1.3 },
-    { id: "p13", name: "Passive Income XIII", baseIncrease: 1e12,  cost: 2.34e16,  scaling: 1.3 },
-    { id: "p14", name: "Passive Income XIV",  baseIncrease: 1e13,  cost: 1.17e17,  scaling: 1.3 },
-    { id: "p15", name: "Passive Income XV",   baseIncrease: 1e14,  cost: 5.85e17,  scaling: 1.3 },
+    { id: "p1",  name: "Passive Income I",   baseIncrease: 1,        cost: 10,      scaling: 1.3 },
+    { id: "p2",  name: "Passive Income II",  baseIncrease: 10,       cost: 1e2,     scaling: 1.3 },
+    { id: "p3",  name: "Passive Income III", baseIncrease: 100,      cost: 1e3,     scaling: 1.3 },
+    { id: "p4",  name: "Passive Income IV",  baseIncrease: 1000,     cost: 1e4,     scaling: 1.3 },
+    { id: "p5",  name: "Passive Income V",   baseIncrease: 10000,    cost: 1e7,     scaling: 1.3 },
+    { id: "p6",  name: "Passive Income VI",  baseIncrease: 100000,   cost: 1e8,     scaling: 1.3 },
+    { id: "p7",  name: "Passive Income VII", baseIncrease: 1e6,      cost: 1e9,     scaling: 1.3 },
+    { id: "p8",  name: "Passive Income VIII",  baseIncrease: 1e7,   cost: 1e10,  scaling: 1.3 },
+    { id: "p9",  name: "Passive Income IX",   baseIncrease: 1e8,   cost: 1e11,  scaling: 1.3 },
+    { id: "p10", name: "Passive Income X",    baseIncrease: 1e9,   cost: 1e15,  scaling: 1.3 },
+    { id: "p11", name: "Passive Income XI",   baseIncrease: 1e10,  cost: 1e16,  scaling: 1.3 },
+    { id: "p12", name: "Passive Income XII",  baseIncrease: 1e11,  cost: 1e17,  scaling: 1.3 },
+    { id: "p13", name: "Passive Income XIII", baseIncrease: 1e12,  cost: 1e18,  scaling: 1.3 },
+    { id: "p14", name: "Passive Income XIV",  baseIncrease: 1e13,  cost: 1e19,  scaling: 1.3 },
+    { id: "p15", name: "Passive Income XV",   baseIncrease: 1e14,  cost: 1e21,  scaling: 1.3 },
 
     // MULTIPLIERS
     { id: "m1", name: "Gold Multiplier I",  multiplier: 1.5,  cost: 5e2 },
@@ -73,21 +73,21 @@ const upgrades = [
     { id: "m15", name: "Gold Multiplier XV",  multiplier: 10, cost: 5e18 },
 
     // SYNERGIES
-    { id: "s1", name: "Synergy Tier 1", effectPerUpgrade: 0.02, cost: 5e2 },
-    { id: "s2", name: "Synergy Tier 2", effectPerUpgrade: 0.02, cost: 2.5e3 },
-    { id: "s3", name: "Synergy Tier 3", effectPerUpgrade: 0.02, cost: 1e4 },
-    { id: "s4", name: "Synergy Tier 4", effectPerUpgrade: 0.02, cost: 5e4 },
-    { id: "s5", name: "Synergy Tier 5", effectPerUpgrade: 0.02, cost: 2.5e5 },
-    { id: "s6", name: "Synergy Tier 6", effectPerUpgrade: 0.02, cost: 1e6 },
-    { id: "s7", name: "Synergy Tier 7", effectPerUpgrade: 0.02, cost: 5e9 },
-    { id: "s8",  name: "Synergy Tier 8",  effectPerUpgrade: 0.02, cost: 5e12 },
-    { id: "s9",  name: "Synergy Tier 9",  effectPerUpgrade: 0.02, cost: 2.5e13 },
-    { id: "s10", name: "Synergy Tier 10", effectPerUpgrade: 0.02, cost: 1.25e14 },
-    { id: "s11", name: "Synergy Tier 11", effectPerUpgrade: 0.02, cost: 6.25e14 },
-    { id: "s12", name: "Synergy Tier 12", effectPerUpgrade: 0.02, cost: 3.12e15 },
-    { id: "s13", name: "Synergy Tier 13", effectPerUpgrade: 0.02, cost: 1.56e15 },
-    { id: "s14", name: "Synergy Tier 14", effectPerUpgrade: 0.02, cost: 7.8e16 },
-    { id: "s15", name: "Synergy Tier 15", effectPerUpgrade: 0.02, cost: 3.9e17 }
+    { id: "s1", name: "Synergy Tier 1", effectPerUpgrade: 0.02, cost: 100},
+    { id: "s2", name: "Synergy Tier 2", effectPerUpgrade: 0.02, cost: 1e3},
+    { id: "s3", name: "Synergy Tier 3", effectPerUpgrade: 0.02, cost: 1e4},
+    { id: "s4", name: "Synergy Tier 4", effectPerUpgrade: 0.02, cost: 1e5},
+    { id: "s5", name: "Synergy Tier 5", effectPerUpgrade: 0.02, cost: 1e8},
+    { id: "s6", name: "Synergy Tier 6", effectPerUpgrade: 0.02, cost: 1e9},
+    { id: "s7", name: "Synergy Tier 7", effectPerUpgrade: 0.02, cost: 1e10},
+    { id: "s8",  name: "Synergy Tier 8",  effectPerUpgrade: 0.02, cost: 1e11},
+    { id: "s9",  name: "Synergy Tier 9",  effectPerUpgrade: 0.02, cost: 1e12},
+    { id: "s10", name: "Synergy Tier 10", effectPerUpgrade: 0.02, cost: 1e16},
+    { id: "s11", name: "Synergy Tier 11", effectPerUpgrade: 0.02, cost: 1e17},
+    { id: "s12", name: "Synergy Tier 12", effectPerUpgrade: 0.02, cost: 1e18},
+    { id: "s13", name: "Synergy Tier 13", effectPerUpgrade: 0.02, cost: 1e19},
+    { id: "s14", name: "Synergy Tier 14", effectPerUpgrade: 0.02, cost: 1e20},
+    { id: "s15", name: "Synergy Tier 15", effectPerUpgrade: 0.02, cost: 1e22}
 ];
 
 
@@ -206,7 +206,7 @@ function getSynergyMultiplier() {
 function formatNumber(num) {
     if (num < 1000) return num.toString();
 
-    const units = ["", "K", "M", "B", "T", "Qd", "Qi", "Sx", "Se", "Oc", "No", "De"];
+    const units = ["", "K", "M", "B", "T", "Qd", "Qi", "Sx", "Se", "Oc", "No", "De", "UDe", "DDe", "TDe"];
     let unitIndex = 0;
 
     while (num >= 1000 && unitIndex < units.length - 1) {
@@ -243,7 +243,7 @@ function incrementCoin(event) {
     const x = event.offsetX;
     const y = event.offsetY;
     const div = document.createElement('div');
-    div.innerHTML = `+${formatNumber(gpc)}`;
+    div.innerHTML = `+${formatNumber(Math.round(gpc))}`;
     div.style.cssText = `
         color: white;
         position: absolute;
